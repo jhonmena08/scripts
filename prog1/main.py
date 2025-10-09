@@ -12,7 +12,7 @@ def main() -> None:
     df = pl.read_csv('C:/Users/Jhonm/repos/scripts/prog1/datos.csv')
     
     df2 = df.filter(
-        pl.col('kilometraje') < 30_000
+        pl.col('kilometraje') < 50_000
     )
 
     print(df2)
