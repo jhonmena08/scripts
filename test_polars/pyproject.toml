@@ -1,5 +1,5 @@
 [project]
-name = "prog2"
+name = "test_polars"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"

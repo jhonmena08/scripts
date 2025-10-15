@@ -1,12 +1,12 @@
 import os
-import polars as pl
+import polars as pl # type: ignore
 
 
 def main():
     os.system('cls')
 
     # df = pl.read_csv('C:/Users/Jhonm/repos/scripts/prog2/autos.csv', try_parse_dates=True)
-    df = pl.read_csv('C:/Users/Jhonm/repos/scripts/prog2/autos.csv')
+    df = pl.read_csv('C:/Users/Jhonm/repos/scripts/test_polars/autos.csv')
     
 
     # df2 = df.filter(
@@ -34,9 +34,6 @@ def main():
     #     pl.col('fecha_venta').dt.day().alias('dia'),
     # )
 
-    df2 = df2.select(
-        pl.col('modelo').first()
-    )
     print(df2)
 
     

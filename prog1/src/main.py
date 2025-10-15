@@ -7,7 +7,7 @@ from pyproj import Transformer
 # MAGNA-SIRGAS Origen Oeste (EPSG:3115)
 # MAGNA-SIRGAS CTM12 (EPSG:9377)
 
-def tranformar_coordenadas() -> None:
+def tranformar_coordenadas() -> int:
     # Coordenadas WGS84
     lat, lon = 3.44188333333, -76.5205625
 
@@ -17,6 +17,9 @@ def tranformar_coordenadas() -> None:
     transformer = Transformer.from_crs("EPSG:4326", "EPSG:6249")
     y, x = transformer.transform(lat, lon)
     print(f"Coordenadas: norte = {y:.5f}, este = {x:.5f}")
+
+    return 0
+
 
 
 def main():
