@@ -1,9 +1,13 @@
 [project]
-name = "test_polars"
+name = "autos-usados"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "numpy>=2.3.4",
+    "pandas>=2.3.3",
     "polars>=1.34.0",
+    "pyarrow>=21.0.0",
+    "scikit-learn>=1.7.2",
 ]
