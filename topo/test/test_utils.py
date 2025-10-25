@@ -14,7 +14,7 @@ def test_gms() -> None:
 
 def test_distancia() -> None:
     p1 = cogo.Point2D(240, 130)
-    p2 = cogo.Point2D(200, 100)
-    assert cogo.distancia(p2, p1) == 5.002
+    p2 = cogo.Point2D(200, 123.26)
+    assert round(cogo.distancia(p2, p1), 4) == 40.564
     return
     
