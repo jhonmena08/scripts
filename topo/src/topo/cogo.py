@@ -1,7 +1,7 @@
 
 __author__ = 'Jhon E. Mena Hurtado'
 __title__= 'TopoCalc'
-__date__ = ''
+__date__ = '24/10/2025'
 __version__ = '1.0.3'
 
 import math

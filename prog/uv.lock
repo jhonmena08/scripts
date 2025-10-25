@@ -1,0 +1,20 @@
+version = 1
+revision = 3
+requires-python = ">=3.13"
+
+[[package]]
+name = "prog"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "topo" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "topo", path = "../topo/dist/topo-1.0.3.tar.gz" }]
+
+[[package]]
+name = "topo"
+version = "1.0.3"
+source = { path = "../topo/dist/topo-1.0.3.tar.gz" }
+sdist = { hash = "sha256:95cd4ce87aa0b1de17d64f55ffe5f1b4693381e8e53b54a2e7d19bb9cc0650b7" }
