@@ -17,7 +17,7 @@ def main() -> int:
 
         # mostrar en pantalla
         os.system('cls')
-        print(f'Intento No: {counter:02d}')
+        print(f'Intento No: {counter:02d}\n')
         print(f'| {frutas[idx1]} | {frutas[idx2]} | {frutas[idx3]} |\n')
         counter += 1
 

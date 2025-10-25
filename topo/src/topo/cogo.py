@@ -1,0 +1,157 @@
+
+__author__ = 'Jhon E. Mena Hurtado'
+__title__= 'TopoCalc'
+__date__ = ''
+__version__ = '1.0.3'
+
+import math
+from dataclasses import dataclass
+
+
+@dataclass
+class Point2D:
+    # clase para representar un Punto 2D
+    # ejemplo: Point2D(133.41, 96.12) 
+    
+    x: float = 0.0
+    y: float = 0.0
+    descripcion: str = ''
+
+    def __str__(self) -> str:
+        return f"x:{self.x:.4f}, y:{self.y:.4f} {self.descripcion}"
+    
+    def to_tuple(self) -> tuple[float]:
+        return(self.x, self.y, 0.0)
+
+    
+# end class
+
+
+def acimut(a: Point2D, b: Point2D) -> float:
+    # calcular el acimut de Dos puntos
+    # ejemplo: acimut(a, b) -> 30.5466739988
+
+    angulo = None
+    if a != None and b != None:
+        if isinstance(a, Point2D) and isinstance(b, Point2D):
+            dx = b.x - a.x
+            dy = b.y - a.y
+
+            if dy != 0: angulo = abs(math.degrees(math.atan(dx/dy)))
+
+            if dx > 0.0 and dy < 0.0:
+                # cuadrante 2
+                return 180 - angulo
+            
+            elif dx < 0.0 and dy < 0.0:
+                # cuadrante 3
+                return 180 + angulo
+
+            elif dx < 0.0 and dy > 0.0:
+                # cuadrante 4
+                return 360 - angulo
+
+            elif dx == 0.0 and dy > 0.0:
+                return 0.0
+
+            elif dx > 0.0 and dy == 0.0:
+                return 90.0
+                
+            elif dx == 0.0 and dy < 0.0:
+                return 180.0
+
+            elif dx < 0.0 and dy == 0.0:
+                return 270.0
+            
+    return angulo
+# fin funccion
+
+
+def distancia(a: Point2D, b: Point2D) -> float:
+    # calcular la distancia entre 2 puntos
+    resultado = None
+
+    if a != None and b != None:
+        if isinstance(a, Point2D) and isinstance(b, Point2D):
+            dx = a.x - b.x
+            dy = a.y - b.y
+            resultado = math.sqrt(dx**2 + dy**2)
+
+    return resultado
+# fin de la funcion
+
+
+def gms(angulo: float) -> str:
+    # convertir a grados-min-seg
+    # formato de salida -> 304-25-12.45 
+
+    try:
+        grados: int = int(angulo)
+        minutos: float = (angulo - int(angulo)) * 60
+        segundos: float = (minutos - int(minutos)) * 60
+
+        return f"{grados}-{int(minutos):02}-{segundos:02.0f}"
+    except(ValueError):
+        print('Los valores deben ser numericos !!')
+    except:
+        print("Ufff, ocurrio un error..")
+# fin de la funcion
+
+
+def degree(fmt: str) -> float:
+    # convertir el formato 334-25-10.46 a grados decimales
+
+    if isinstance(fmt, str):
+        try:
+            array = fmt.split('-')
+            grados = float(array[0])
+            minutos = float(array[1]) / 60.0
+            segundos = float(array[2]) / 3600.0
+
+            return grados + minutos + segundos
+        
+        except(ValueError):
+            print('los valores deben ser numerico !!')
+        except:
+            print("Ufff, ocurrio un error..")
+# fin de la funcion
+
+
+def acimut_dist(a: Point2D, b: Point2D) -> tuple[str, float]:
+    # ejemplo: acimut_dist(a, b) -> ('62-39-42.57', 119.9804)
+
+    az: str = None
+    dist: float = None
+
+    if a != None and b != None:
+        if isinstance(a, Point2D) and isinstance(b, Point2D):
+            az= gms(acimut(a, b))
+            dist = round(distancia(a, b), 4)
+
+    return (az, dist) 
+# fin de la funcion
+
+
+def punto_linea(a: Point2D, b: Point2D, desfases= list[float]) -> None:
+    if isinstance(a, Point2D) and isinstance(b, Point2D):
+        # convertir a radianes
+        angulo = math.radians(acimut(a, b))
+
+        for valor in desfases:
+            e = a.x + math.sin(angulo) * valor
+            n = a.y + math.cos(angulo) * valor
+            print(f'{valor:.4f} -> {Point2D(e, n)}')
+# fin de la funcion
+
+
+def get_punto(a: Point2D, azimut: float, dist: float) -> Point2D:
+    try:
+        azimut = math.radians(azimut)
+        e = a.x + math.sin(azimut) * dist
+        n = a.y + math.cos(azimut) * dist
+
+        return Point2D(e, n)
+
+    except ValueError:
+        print('Error de valores')
+
