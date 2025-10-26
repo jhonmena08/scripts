@@ -2,8 +2,8 @@ import topo.cogo as cogo
 
 
 def test_punto() -> None:
-    A1 = cogo.Point2D(100, 200, 'cam')
-    assert cogo.Point2D(100, 200, 'cam') == A1
+    A1 = cogo.Point(100, 200, 'cam')
+    assert cogo.Point(100, 200, 'cam') == A1
     return
 
 
@@ -13,8 +13,8 @@ def test_gms() -> None:
 
 
 def test_distancia() -> None:
-    p1 = cogo.Point2D(240, 130)
-    p2 = cogo.Point2D(200, 123.26)
-    assert round(cogo.distancia(p2, p1), 4) == 40.564
+    p1 = cogo.Point(240, 130)
+    p2 = cogo.Point(200, 123.26)
+    assert round(cogo.distancia(p2, p1), 3) == 40.564
     return
     

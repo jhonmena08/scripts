@@ -9,9 +9,9 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Point2D:
+class Point:
     # clase para representar un Punto 2D
-    # ejemplo: Point2D(133.41, 96.12) 
+    # ejemplo: Point(133.41, 96.12) 
     
     x: float = 0.0
     y: float = 0.0
@@ -27,13 +27,13 @@ class Point2D:
 # end class
 
 
-def acimut(a: Point2D, b: Point2D) -> float:
+def acimut(a: Point, b: Point) -> float:
     # calcular el acimut de Dos puntos
     # ejemplo: acimut(a, b) -> 30.5466739988
 
     angulo = None
     if a != None and b != None:
-        if isinstance(a, Point2D) and isinstance(b, Point2D):
+        if isinstance(a, Point) and isinstance(b, Point):
             dx = b.x - a.x
             dy = b.y - a.y
 
@@ -67,12 +67,12 @@ def acimut(a: Point2D, b: Point2D) -> float:
 # fin funccion
 
 
-def distancia(a: Point2D, b: Point2D) -> float:
+def distancia(a: Point, b: Point) -> float:
     # calcular la distancia entre 2 puntos
     resultado = None
 
     if a != None and b != None:
-        if isinstance(a, Point2D) and isinstance(b, Point2D):
+        if isinstance(a, Point) and isinstance(b, Point):
             dx = a.x - b.x
             dy = a.y - b.y
             resultado = math.sqrt(dx**2 + dy**2)
@@ -117,14 +117,14 @@ def degree(fmt: str) -> float:
 # fin de la funcion
 
 
-def acimut_dist(a: Point2D, b: Point2D) -> tuple[str, float]:
+def acimut_dist(a: Point, b: Point) -> tuple[str, float]:
     # ejemplo: acimut_dist(a, b) -> ('62-39-42.57', 119.9804)
 
     az: str = None
     dist: float = None
 
     if a != None and b != None:
-        if isinstance(a, Point2D) and isinstance(b, Point2D):
+        if isinstance(a, Point) and isinstance(b, Point):
             az= gms(acimut(a, b))
             dist = round(distancia(a, b), 4)
 
@@ -132,25 +132,25 @@ def acimut_dist(a: Point2D, b: Point2D) -> tuple[str, float]:
 # fin de la funcion
 
 
-def punto_linea(a: Point2D, b: Point2D, desfases= list[float]) -> None:
-    if isinstance(a, Point2D) and isinstance(b, Point2D):
+def punto_linea(a: Point, b: Point, desfases= list[float]) -> None:
+    if isinstance(a, Point) and isinstance(b, Point):
         # convertir a radianes
         angulo = math.radians(acimut(a, b))
 
         for valor in desfases:
             e = a.x + math.sin(angulo) * valor
             n = a.y + math.cos(angulo) * valor
-            print(f'{valor:.4f} -> {Point2D(e, n)}')
+            print(f'{valor:.4f} -> {Point(e, n)}')
 # fin de la funcion
 
 
-def get_punto(a: Point2D, azimut: float, dist: float) -> Point2D:
+def get_punto(a: Point, azimut: float, dist: float) -> Point:
     try:
         azimut = math.radians(azimut)
         e = a.x + math.sin(azimut) * dist
         n = a.y + math.cos(azimut) * dist
 
-        return Point2D(e, n)
+        return Point(e, n)
 
     except ValueError:
         print('Error de valores')
