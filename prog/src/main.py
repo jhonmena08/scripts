@@ -1,12 +1,12 @@
-import topo.cogo as cogo
+from topo.cogo import Point, distancia
 
 
 def main():
-    p1 = cogo.Point(100.05, 213.74, 'gps_1')
-    p2 = cogo.Point(153.98, 199.66, 'gps_2')
+    p1 = Point(100.05, 213.74, 'gps1')
+    p2 = Point(153.98, 199.66, 'gps2')
 
-    print(p1, '\t', p2)
-    print(cogo.distancia(p1, p2))
+    print(f'{p1}\n{p2}')
+    print(f'{distancia(p1, p2):.4f} mts')
 
 
 if __name__ == "__main__":
