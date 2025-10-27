@@ -6,6 +6,7 @@ __version__ = '1.0.3'
 
 import math
 from dataclasses import dataclass
+from typing import ClassVar
 
 
 @dataclass
@@ -13,13 +14,25 @@ class Point:
     # clase para representar un Punto 2D
     # ejemplo: Point(133.41, 96.12) 
     
+    # variables de instancia
     x: float = 0.0
     y: float = 0.0
     descripcion: str = ''
 
+    # variable de clase
+    counter: ClassVar[int] = 0
+
+    def __post_init__ (self) -> None:
+        Point.counter += 1
+
+        if self.descripcion == '':
+            self.descripcion = 'p'+ str(Point.counter)
+
+
     def __str__(self) -> str:
-        return f"x:{self.x:.4f}, y:{self.y:.4f} {self.descripcion}"
+        return f"Point x:{self.x:.4f}, y:{self.y:.4f}, {self.descripcion}"
     
+
     def to_tuple(self) -> tuple[float]:
         return(self.x, self.y, 0.0)
 

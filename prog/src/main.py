@@ -1,12 +1,18 @@
 from topo.cogo import Point, distancia
+import pandas as pd
+import os
 
 
-def main():
-    p1 = Point(100.05, 213.74, 'gps1')
-    p2 = Point(153.98, 199.66, 'gps2')
+def main() -> int:
+    os.system('cls')
+    
+    df = pd.DataFrame({
+        'location': [Point(100, 200), Point(500,456), Point(199, 87, 'cer'), Point(344.52, 233.04)]
+    })
 
-    print(f'{p1}\n{p2}')
-    print(f'{distancia(p1, p2):.4f} mts')
+    print(df)
+
+    return 0
 
 
 if __name__ == "__main__":

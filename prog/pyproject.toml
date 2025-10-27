@@ -5,8 +5,9 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "pandas>=2.3.3",
     "topo",
 ]
 
 [tool.uv.sources]
-topo = { path = "../topo/dist/topo-1.0.3.tar.gz" }
+topo = { path = "../topo/dist/topo-1.0.5.tar.gz" }
