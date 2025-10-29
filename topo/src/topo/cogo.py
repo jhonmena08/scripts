@@ -2,7 +2,7 @@
 __author__ = 'Jhon E. Mena Hurtado'
 __title__= 'TopoCalc'
 __date__ = '24/10/2025'
-__version__ = '1.0.3'
+
 
 import math
 from dataclasses import dataclass
@@ -77,6 +77,7 @@ def acimut(a: Point, b: Point) -> float:
                 return 270.0
             
     return angulo
+
 # fin funccion
 
 
@@ -91,19 +92,20 @@ def distancia(a: Point, b: Point) -> float:
             resultado = math.sqrt(dx**2 + dy**2)
 
     return resultado
+
 # fin de la funcion
 
 
 def gms(angulo: float) -> str:
     # convertir a grados-min-seg
-    # formato de salida -> 304-25-12.45 
+    # formato de salida -> 304-25-12
 
     try:
         grados: int = int(angulo)
         minutos: float = (angulo - int(angulo)) * 60
         segundos: float = (minutos - int(minutos)) * 60
 
-        return f"{grados}-{int(minutos):02}-{segundos:02.0f}"
+        return f"{grados:03}-{int(minutos):02}-{int(round(segundos, 0)):02}"
     except(ValueError):
         print('Los valores deben ser numericos !!')
     except:
@@ -127,11 +129,12 @@ def degree(fmt: str) -> float:
             print('los valores deben ser numerico !!')
         except:
             print("Ufff, ocurrio un error..")
+
 # fin de la funcion
 
 
 def acimut_dist(a: Point, b: Point) -> tuple[str, float]:
-    # ejemplo: acimut_dist(a, b) -> ('62-39-42.57', 119.9804)
+    # ejemplo: acimut_dist(a, b) -> ('62-39-43', 119.9804)
 
     az: str = None
     dist: float = None
@@ -142,7 +145,9 @@ def acimut_dist(a: Point, b: Point) -> tuple[str, float]:
             dist = round(distancia(a, b), 4)
 
     return (az, dist) 
+
 # fin de la funcion
+
 
 
 def punto_linea(a: Point, b: Point, desfases= list[float]) -> None:

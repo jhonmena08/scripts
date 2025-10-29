@@ -1,20 +1,20 @@
-import topo.cogo as cogo
+from topo.cogo import Point, gms, acimut_dist
 
 
 def test_punto() -> None:
-    A1 = cogo.Point(100, 200, 'cam')
-    assert cogo.Point(100, 200, 'cam') == A1
+    A1 = Point(100, 200, 'cam')
+    assert Point(100, 200, 'cam') == A1
     return
 
 
 def test_gms() -> None:
-    assert cogo.gms(39.50) == '39-30-00'
+    assert gms(39.51) == '039-30-36'
     return
 
 
-def test_distancia() -> None:
-    p1 = cogo.Point(240, 130)
-    p2 = cogo.Point(200, 123.26)
-    assert round(cogo.distancia(p2, p1), 3) == 40.564
+def test_acimut() -> None:
+    p191 = Point(1061912.027, 862535.415)
+    p192 = Point(1061608.151, 862535.214)
+    assert acimut_dist(p191, p192) == 40.564
     return
     
