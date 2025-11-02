@@ -4,7 +4,7 @@ import os
 
 
 def get_point(row: tuple) -> Point:
-    return Point(row['E1'], row['N1'], row['vertice'])
+    return Point(row['E2'], row['N2'], row['vertice'])
 
 
 
