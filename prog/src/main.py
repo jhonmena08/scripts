@@ -4,7 +4,7 @@ import os
 
 
 def get_point(row: tuple) -> Point:
-    return Point(row['E2'], row['N2'], row['vertice'])
+    return Point(row['E1'], row['N1'], row['vertice'])
 
 
 
@@ -22,6 +22,7 @@ def main() -> int:
     for idx in range(len(puntos) - 1):
         az_dist: tuple[str, float] =  acimut_dist(puntos[idx],  puntos[idx + 1])
         vertices: str = str(puntos[idx].descripcion) + ' -> ' + str(puntos[idx + 1].descripcion)
+
         print(f'|{az_dist[0]:^12}|{az_dist[1]:10.3f}|{vertices:^25}|')
 
     print()
