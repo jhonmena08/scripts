@@ -25,11 +25,11 @@ def is_integer(s: str) -> bool:
         return False
     
 
-def factorial(n: int) -> int:
+def fibonacci(n: int) -> int:
     if n < 2:
         return 1
     else:
-        return n * factorial(n - 1)
+        return fibonacci(n - 1) + fibonacci(n - 2)
 # end
 
 
@@ -47,7 +47,7 @@ class App:
         self.frame.pack(fill="both", expand=True)
 
         # Etiqueta
-        self.label = ttk.Label(self.frame, text="Serie de factorial:")
+        self.label = ttk.Label(self.frame, text= 5*'-' + " Visor " + 5*'-')
         self.label.pack(anchor="w")
 
         # Scrollbar
@@ -65,20 +65,20 @@ class App:
         self.btn = ttk.Button(self.frame, text='Calcular', command=self.on_click)
         self.btn.pack(side='right', anchor='se', padx=5, pady=5)
 
-        self.root.title("Ejemplo de Listbox")
+        self.root.title("Tkinter")
         centrar_ventana(self.root, 400, 500)
         self.root.mainloop()
 
     
     def on_click(self) -> None:
-        valor = inputbox(self.root, "Ingrese un valor numerico", "Factorial", "20")
+        valor = inputbox(self.root, "Ingrese un valor numerico", "Fibonacci", "32")
 
         if not valor is None and is_integer(valor):
             valor = int(valor)
 
             self.listbox.delete(0, tk.END)
             for x in range(valor + 1):
-                self.listbox.insert(tk.END, f'{x} -> {factorial(x)}')
+                self.listbox.insert(tk.END, f'{x} -> {fibonacci(x)}')
 
 # end class
 
