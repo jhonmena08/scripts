@@ -14,7 +14,7 @@ def factorial(n: int) -> int:
 
 class App:
     def __init__(self):
-        # self.root = ThemedTk(theme='winxpblue')
+        # ventana principal
         self.root = ThemedTk(theme='arc')
 
         # textbox
@@ -26,7 +26,7 @@ class App:
         self.btn = ttk.Button(self.root, text='Calcular factorial', command=self.handler_btn)
         self.btn.place(relwidth=0.60, relx=0.5, rely=0.5, anchor='center')
 
-        # window
+        # root
         self.root.title('Form1')
         self.root.geometry('500x200')
         self.root.mainloop()
