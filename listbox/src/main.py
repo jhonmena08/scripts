@@ -4,16 +4,13 @@ from dialog import inputbox
 
 
 def centrar_ventana(ventana, ancho, alto):
-    # Obtener el ancho y alto de la pantalla
-    ancho_pantalla = ventana.winfo_screenwidth()
-    alto_pantalla = ventana.winfo_screenheight()
-
     # Calcular la posición x, y 
-    x = (ancho_pantalla // 2) - (ancho // 2)
-    y = (alto_pantalla // 2) - (alto // 2)
+    x = (ventana.winfo_screenwidth() // 2) -  (ancho // 2)
+    y = (ventana.winfo_screenheight() // 2) - (alto // 2)
 
     # Fijar tamaño y ubicación
     ventana.geometry(f"{ancho}x{alto}+{x}+{y}")
+
 # end
 
 
