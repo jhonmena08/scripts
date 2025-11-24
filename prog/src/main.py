@@ -1,6 +1,7 @@
 from pyproj import Transformer
-from libtopo.cogo import Point, acimut_dist
 import pandas as pd
+from libtopo.cogo import Point, acimut_dist
+
 import os
 
 
@@ -13,20 +14,13 @@ def transformar(origen: str, dest: str, lat: float, lon: float, h: float) -> tup
 # end
 
 
-def get_coord_ctm12(puntos: list[Point]) -> None:
+def get_coord_geodesica(puntos: list[Point]) -> None:
     for p in puntos:
         # Magna Cali -> WGS84
         x, y, z = transformar(
         "EPSG:6249", "EPSG:4326", p.x, p.y, 0.0)
 
-        print(f'|{x:^15.3f}|{y:^15.3f}|{p.descripcion:^15}|')
-
-# end
-
-
-
-def get_point(row: tuple) -> Point:
-    return Point(row['E1'], row['N1'], row['vertice'])
+        print(f'|{x:^15.9f}|{y:^15.9f}|{p.descripcion:^15}|')
 
 # end
 
@@ -40,6 +34,12 @@ def calcular_acimut_dist(puntos: list[Point]) -> None:
 # end
 
 
+def get_point(row: tuple) -> Point:
+    return Point(row['E1'], row['N1'], row['vertice'])
+
+# end
+
+
 def main() -> int:
     os.system('cls')
 
@@ -47,11 +47,13 @@ def main() -> int:
 
     # filtrar
     df = df[df['ubicacion'].str.contains('autonoma')][['N1', 'E1', 'vertice']]
-    ptos = [fila for fila in df.apply(get_point, axis=1)]
 
-    # calcular_acimut_dist(ptos)
-    get_coord_ctm12(ptos)
+    # obtener la lista de Puntos
+    ptos = [r for r in df.apply(get_point, axis=1)]
+
+    get_coord_geodesica(ptos)
     print()
+
     return 0
 
 
