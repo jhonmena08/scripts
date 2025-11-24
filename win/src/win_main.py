@@ -8,14 +8,21 @@ def centrar_ventana(ventana: tk.Tk, ancho: int, alto: int) -> None:
     y = (ventana.winfo_screenheight() // 2) - (alto // 2)
 
     # Fijar tamaño y ubicación
-    ventana.geometry(f"{ancho}x{alto}+{x}+{y}")        
+    ventana.geometry(f"{ancho}x{alto}+{x}+{y}")
+
 # end
 
 
 def init_win_main() -> None:
+    counter: int = 0
+    
     def on_click() -> None:
-        print('Bienvenidos')
+        nonlocal counter
+
+        counter += 1
+        print(f'Incrementado .. {counter}')
     # end
+
 
     root = tk.Tk()
 
@@ -23,6 +30,18 @@ def init_win_main() -> None:
     mybtn.pack(fill='x', expand=True, anchor='center', padx=5)
 
     root.title('Tkinter')
-    centrar_ventana(root, 300, 150)
+    centrar_ventana(ventana= root, ancho=300, alto=150)
     root.mainloop()
+
 # end
+
+
+def main() -> int:
+    init_win_main()
+    return 0
+
+# end
+
+
+if __name__ == "__main__":
+    main()

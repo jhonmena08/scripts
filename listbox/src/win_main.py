@@ -1,33 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-from dialog import inputbox
-
-
-def centrar_ventana(ventana, ancho, alto):
-    # Calcular la posición x, y 
-    x = (ventana.winfo_screenwidth() // 2) -  (ancho // 2)
-    y = (ventana.winfo_screenheight() // 2) - (alto // 2)
-
-    # Fijar tamaño y ubicación
-    ventana.geometry(f"{ancho}x{alto}+{x}+{y}")
-
-# end
-
-
-def is_integer(s: str) -> bool:
-    try:
-        int(s)
-        return True
-    except ValueError:
-        return False
-    
-
-def fibonacci(n: int) -> int:
-    if n < 2:
-        return 1
-    else:
-        return fibonacci(n - 1) + fibonacci(n - 2)
-# end
+from dialog import inputbox, centrar_ventana
+from logica import *
 
 
 class App:
@@ -80,10 +54,13 @@ class App:
 # end class
 
 
-
-def main():
+def main() -> int:
     App()
+    return 0
+
 
 
 if __name__ == "__main__":
     main()
+
+

@@ -1,6 +1,19 @@
 import tkinter as tk
 from tkinter import ttk
 
+
+def centrar_ventana(ventana, ancho, alto):
+    # Calcular la posición x, y 
+    x = (ventana.winfo_screenwidth() // 2) -  (ancho // 2)
+    y = (ventana.winfo_screenheight() // 2) - (alto // 2)
+
+    # Fijar tamaño y ubicación
+    ventana.geometry(f"{ancho}x{alto}+{x}+{y}")
+
+# end
+
+
+
 def inputbox(parent, prompt="Ingrese un valor:", title="InputBox", default_text="") -> dict[str, None]:
     """
     Crea una ventana tipo InputBox usando Toplevel.
@@ -65,4 +78,5 @@ def inputbox(parent, prompt="Ingrese un valor:", title="InputBox", default_text=
 
     return result["value"]
 
+# end
  
